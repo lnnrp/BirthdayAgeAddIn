@@ -28,7 +28,7 @@
     <FormSettings>
         <Form xsi:type="ItemRead">
             <DesktopSettings>
-                <SourceLocation DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/taskpane/taskpane.html"/>
+                <SourceLocation DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/dist/taskpane/taskpane.html"/>
                 <RequestedHeight>250</RequestedHeight>
             </DesktopSettings>
         </Form>
@@ -95,8 +95,8 @@
                 <bt:Image id="Icon.80x80" DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/assets/icon-80.png"/>
             </bt:Images>
             <bt:Urls>
-                <bt:Url id="Commands.Url" DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn//commands/commands.html"/>
-                <bt:Url id="Taskpane.Url" DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/taskpane/taskpane.html"/>
+                <bt:Url id="Commands.Url" DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/dist/commands/commands.html"/>
+                <bt:Url id="Taskpane.Url" DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/dist/taskpane/taskpane.html"/>
             </bt:Urls>
             <bt:ShortStrings>
                 <bt:String id="GroupLabel" DefaultValue="Birthday Add-in"/>
