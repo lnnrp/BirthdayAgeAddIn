@@ -36,4 +36,4 @@ async function generateBirthdays(event) {
 }
 
 // Make the function globally available
-window.generateBirthdays = generateBirthdays;
+Office.actions.associate("generateBirthdays", generateBirthdays);
