@@ -2,9 +2,10 @@ async function generateBirthdays() {
     try {
         console.log("Generate clicked");
 
-        
+        // Prepare the request body
         const body = { year: new Date().getFullYear() };
 
+        // Call your Azure Function anonymously
         const response = await fetch(
             "https://birthdaysync.azurewebsites.net/api/generate-birthdays",
             {
@@ -27,3 +28,6 @@ async function generateBirthdays() {
         console.error("Error in generateBirthdays:", err);
     }
 }
+
+// Optional: attach the function to your button click
+document.getElementById("generateButton").addEventListener("click", generateBirthdays);
