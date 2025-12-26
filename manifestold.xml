@@ -25,14 +25,9 @@
             <Set Name="Mailbox" MinVersion="1.1"/>
         </Sets>
     </Requirements>
-    <FormSettings>
-        <Form xsi:type="ItemRead">
-            <DesktopSettings>
-                <SourceLocation DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/dist/taskpane/taskpane.html"/>
-                <RequestedHeight>250</RequestedHeight>
-            </DesktopSettings>
-        </Form>
-    </FormSettings>
+    <DefaultSettings>
+        <SourceLocation DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/dist/taskpane/taskpane.html"/>
+    </DefaultSettings>
     <Permissions>ReadWriteItem</Permissions>
     <Rule xsi:type="RuleCollection" Mode="Or">
         <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>

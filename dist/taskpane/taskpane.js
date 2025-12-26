@@ -5,10 +5,11 @@
 
 /* global document, Office */
 
-Office.onReady(async () => {
-    document
-        .getElementById("generate")
-        .addEventListener("click", generateBirthdays);
+Office.onReady(() => {
+    const btn = document.getElementById("generate");
+    if (btn) {
+        btn.addEventListener("click", generateBirthdays);
+    }
 });
 
 async function generateBirthdays() {
