@@ -6,11 +6,9 @@
 /* global document, Office */
 
 Office.onReady(() => {
-    const btn = document.getElementById("generate");
-    if (btn) {
-        btn.addEventListener("click", generateBirthdays);
-    }
+    document.body.innerHTML += "<p>Taskpane loaded successfully</p>";
 });
+
 
 async function generateBirthdays() {
     const status = document.getElementById("status");
