@@ -9,6 +9,7 @@ Office.onReady(() => {
 });
 
 async function generateBirthdays() {
+    console.log("button clicked");
     const statusEl = document.getElementById("status");
     try {
         statusEl.innerText = "Generating birthdays...";
