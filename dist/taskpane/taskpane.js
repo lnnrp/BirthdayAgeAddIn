@@ -1,4 +1,5 @@
 Office.onReady(() => {
+    console.log("office ready");
     document.addEventListener("DOMContentLoaded", () => {
         const btn = document.getElementById("generateBtn");
         if (btn) {
