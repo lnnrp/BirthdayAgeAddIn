@@ -10,40 +10,40 @@ Office.onReady(() => {
 });
 
 
-async function generateBirthdays() {
-    const status = document.getElementById("status");
-    status.textContent = "Signing in...";
-
-    try {
-        const token = await OfficeRuntime.auth.getAccessToken({
-            allowSignInPrompt: true,
-            allowConsentPrompt: true
-        });
-
-        status.textContent = "Generating birthdays...";
-
-        const year = new Date().getFullYear();
-
-        const response = await fetch(
-            "https://birthdaysync.azurewebsites.net/api/generate-birthdays",
-            {
-                method: "POST",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ year })
-            }
-        );
-
-        if (!response.ok) throw new Error("Backend error");
-
-        status.textContent = "Birthday events created";
-    } catch (err) {
-        console.error(err);
-        status.textContent = "Something went wrong";
-    }
-}
+// async function generateBirthdays() {
+//     const status = document.getElementById("status");
+//     status.textContent = "Signing in...";
+//
+//     try {
+//         const token = await OfficeRuntime.auth.getAccessToken({
+//             allowSignInPrompt: true,
+//             allowConsentPrompt: true
+//         });
+//
+//         status.textContent = "Generating birthdays...";
+//
+//         const year = new Date().getFullYear();
+//
+//         const response = await fetch(
+//             "https://birthdaysync.azurewebsites.net/api/generate-birthdays",
+//             {
+//                 method: "POST",
+//                 headers: {
+//                     "Authorization": `Bearer ${token}`,
+//                     "Content-Type": "application/json"
+//                 },
+//                 body: JSON.stringify({ year })
+//             }
+//         );
+//
+//         if (!response.ok) throw new Error("Backend error");
+//
+//         status.textContent = "Birthday events created";
+//     } catch (err) {
+//         console.error(err);
+//         status.textContent = "Something went wrong";
+//     }
+// }
 
 
 
