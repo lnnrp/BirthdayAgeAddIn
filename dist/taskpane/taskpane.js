@@ -1,6 +1,6 @@
 Office.onReady(() => {
     // Ensure Office is ready before adding event listeners
-    document.getElementById("generateButton").onclick = generateBirthdays;
+    document.getElementById("generateBtn").onclick = generateBirthdays;
 });
 
 async function generateBirthdays() {
