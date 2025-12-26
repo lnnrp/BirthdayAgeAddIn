@@ -47,7 +47,6 @@
         <Hosts>
             <Host xsi:type="MailHost">
                 <DesktopFormFactor>
-                    <FunctionFile resid="Commands.Url"/>
                     <ExtensionPoint xsi:type="MessageReadCommandSurface">
                         <OfficeTab id="TabDefault">
                             <Group id="birthdayAddinGroup">
@@ -84,7 +83,6 @@
             </bt:Images>
             <bt:Urls>
                 <bt:Url id="Taskpane.Url" DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/dist/taskpane/taskpane.html"/>
-                <bt:Url id="Commands.Url" DefaultValue="https://lnnrp.github.io/BirthdayAgeAddIn/dist/commands/commands.html"/>
             </bt:Urls>
             <bt:ShortStrings>
                 <bt:String id="GroupLabel" DefaultValue="Birthday Add-in"/>
