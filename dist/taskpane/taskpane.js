@@ -8,26 +8,26 @@ async function generateBirthdays() {
         console.log("Generate clicked");
 
         let token;
-
-        // Use OfficeRuntime.auth for modern SSO (OWA + Desktop)
-        if (Office.context.requirements.isSetSupported("IdentityAPI", 1.3)) {
-            console.log("Using Identity API");
-            token = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true });
-            console.log("Got token via OfficeRuntime.auth");
-        } else {
-            console.log("Fallback");
-            // Fallback for older Outlook desktop clients
-            token = await new Promise((resolve, reject) => {
-                Office.context.mailbox.getCallbackTokenAsync({ isRest: true }, function(result) {
-                    if (result.status === "succeeded") {
-                        resolve(result.value);
-                    } else {
-                        reject(result.error);
-                    }
-                });
+        console.log("Fallback");
+        // Fallback for older Outlook desktop clients
+        token = await new Promise((resolve, reject) => {
+            Office.context.mailbox.getCallbackTokenAsync({ isRest: true }, function(result) {
+                if (result.status === "succeeded") {
+                    resolve(result.value);
+                } else {
+                    reject(result.error);
+                }
             });
-            console.log("Got token via getCallbackTokenAsync");
-        }
+        });
+        console.log("Got token via getCallbackTokenAsync");
+        // // Use OfficeRuntime.auth for modern SSO (OWA + Desktop)
+        // if (Office.context.requirements.isSetSupported("IdentityAPI", 1.3)) {
+        //     console.log("Using Identity API");
+        //     token = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true });
+        //     console.log("Got token via OfficeRuntime.auth");
+        // } else {
+        //    
+        // }
 
         // Prepare body
         const body = { year: new Date().getFullYear() };
