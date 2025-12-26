@@ -1,11 +1,11 @@
 Office.onReady(() => {
     console.log("office ready");
-    document.addEventListener("DOMContentLoaded", () => {
-        const btn = document.getElementById("generateBtn");
-        if (btn) {
-            btn.onclick = generateBirthdays;
-        }
-    });
+    const btn = document.getElementById("generateTaskpaneButton");
+    if (btn) {
+        btn.onclick = generateBirthdays;
+    } else {
+        console.error("Button not found in taskpane HTML");
+    }
 });
 
 async function generateBirthdays() {
