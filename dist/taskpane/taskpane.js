@@ -14,17 +14,19 @@ async function generateBirthdays() {
     try {
         statusEl.innerText = "Generating birthdays...";
 
-        const response = await fetch(
-            "https://birthdaysync.azurewebsites.net/api/GenerateBirthdays",
-            {
-                method: "POST",
-                headers: {
-                    "x-api-key": "YOUR_STATIC_KEY",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ year: new Date().getFullYear() })
-            }
-        );
+        const mailbox = Office.context.mailbox.userProfile.emailAddress;
+
+        const response = await fetch("https://birthdaysync.azurewebsites.net/api/GenerateBirthdays", {
+            method: "POST",
+            headers: {
+                "x-api-key": "YOUR_STATIC_KEY",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                year: new Date().getFullYear(),
+                user: mailbox
+            })
+        });
 
         if (response.ok) {
             statusEl.innerText = await response.text();
