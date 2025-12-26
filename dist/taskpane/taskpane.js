@@ -1,33 +1,31 @@
+const statusElement = document.getElementById("status");
+
 async function generateBirthdays() {
     try {
-        console.log("Generate clicked");
+        statusElement.textContent = "Generating birthdays...";
 
-        // Prepare the request body
         const body = { year: new Date().getFullYear() };
 
-        // Call your Azure Function anonymously
         const response = await fetch(
             "https://birthdaysync.azurewebsites.net/api/generate-birthdays",
             {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             }
         );
 
         if (response.ok) {
-            console.log("Birthdays generated successfully!");
+            statusElement.textContent = "Birthdays generated successfully!";
         } else {
             const text = await response.text();
-            console.error("Error generating birthdays:", text);
+            statusElement.textContent = `Error generating birthdays: ${text}`;
         }
 
     } catch (err) {
-        console.error("Error in generateBirthdays:", err);
+        statusElement.textContent = `Error: ${err.message}`;
     }
 }
 
-// Optional: attach the function to your button click
+// Attach the function to the button
 document.getElementById("generateButton").addEventListener("click", generateBirthdays);
