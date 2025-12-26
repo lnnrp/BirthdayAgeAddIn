@@ -1,6 +1,6 @@
 Office.onReady(() => {
     document.addEventListener("DOMContentLoaded", () => {
-        const btn = document.getElementById("generateTaskpaneButton");
+        const btn = document.getElementById("generateBtn");
         if (btn) {
             btn.onclick = generateBirthdays;
         }
