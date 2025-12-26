@@ -7,7 +7,7 @@ async function generateBirthdays() {
         const body = { year: new Date().getFullYear() };
 
         const response = await fetch(
-            "https://birthdaysync.azurewebsites.net/api/generate-birthdays",
+            "https://birthdaysync.azurewebsites.net/api/GenerateBirthdays",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
