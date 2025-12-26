@@ -1,48 +1,46 @@
-Office.onReady(async () => {
-    console.log("Office is ready");
-
-    const generateButton = document.getElementById("generateButton");
-    if (!generateButton) return console.error("Generate button not found!");
-
-    generateButton.addEventListener("click", async () => {
-        console.log("Generate button clicked");
+async function generateBirthdays() {
+    try {
+        console.log("Generate clicked");
 
         let token;
-        try {
-            // Attempt to get an access token
+
+        // Use the new OfficeRuntime API for web/OWA
+        if (Office.context.requirements.isSetSupported('IdentityAPI', 1.3)) {
             token = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true });
-            console.log("Access token obtained:", token);
-        } catch (err) {
-            console.error("Failed to get access token:", err);
-            alert("Failed to get access token. Check console for details.");
-            return;
-        }
-
-        try {
-            // Example API call - replace with your endpoint
-            const response = await fetch("https://birthdaysync.azurewebsites.net/api/generate-birthdays", {
-                method: "GET", // or "POST"
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                }
+        } else {
+            // Fallback for older desktop versions
+            token = await new Promise((resolve, reject) => {
+                Office.context.mailbox.getCallbackTokenAsync({ isRest: true }, function(result) {
+                    if (result.status === "succeeded") {
+                        resolve(result.value);
+                    } else {
+                        reject(result.error);
+                    }
+                });
             });
-
-            console.log("Fetch response status:", response.status);
-
-            if (!response.ok) {
-                const text = await response.text();
-                console.error("Fetch failed with status", response.status, "and response:", text);
-                alert(`Fetch failed: ${response.status}`);
-                return;
-            }
-
-            const data = await response.json();
-            console.log("Fetch succeeded, data:", data);
-            alert("Fetch succeeded! Check console for data.");
-        } catch (err) {
-            console.error("Fetch threw an error:", err);
-            alert("Fetch error occurred. Check console for details.");
         }
-    });
-});
+
+        // Prepare the request body
+        const body = { year: new Date().getFullYear() };
+
+        // Call your Azure Function
+        const response = await fetch("https://birthdaysync.azurewebsites.net/api/generate-birthdays", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (response.ok) {
+            console.log("Birthdays generated successfully!");
+        } else {
+            const text = await response.text();
+            console.error("Error generating birthdays:", text);
+        }
+
+    } catch (err) {
+        console.error("Error in generateBirthdays:", err);
+    }
+}
