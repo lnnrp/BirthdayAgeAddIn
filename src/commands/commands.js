@@ -1,6 +1,7 @@
 /* global Office */
 
-Office.onReady(() => {});
+Office.onReady(() => {
+});
 
 // This function will be triggered by the ribbon button
 async function generateBirthdays(event) {
@@ -20,7 +21,7 @@ async function generateBirthdays(event) {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ year })
+                body: JSON.stringify({year})
             }
         );
 

@@ -11,9 +11,11 @@ async function generateBirthdays() {
 
         // Use OfficeRuntime.auth for modern SSO (OWA + Desktop)
         if (Office.context.requirements.isSetSupported("IdentityAPI", 1.3)) {
+            console.log("Using Identity API");
             token = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true });
             console.log("Got token via OfficeRuntime.auth");
         } else {
+            console.log("Fallback");
             // Fallback for older Outlook desktop clients
             token = await new Promise((resolve, reject) => {
                 Office.context.mailbox.getCallbackTokenAsync({ isRest: true }, function(result) {

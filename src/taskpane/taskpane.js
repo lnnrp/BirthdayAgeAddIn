@@ -33,7 +33,7 @@ async function generateBirthdays() {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ year })
+                body: JSON.stringify({year})
             }
         );
 
