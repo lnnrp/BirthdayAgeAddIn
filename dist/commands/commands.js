@@ -1,4 +1,5 @@
 /* global Office */
+alert("commands.js loaded");
 
 Office.onReady(() => {});
 
